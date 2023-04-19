@@ -2,6 +2,7 @@
 import "./index.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function MainPage() {
   const [products, setProducts] = useState([]);
@@ -35,26 +36,28 @@ function MainPage() {
         <div id="product-list">
           {products.map((product, i) => {
             return (
-              <div className="product-card" key={i}>
-                <div>
-                  <img
-                    className="product-img"
-                    //src="/images/products/keyboard1.jpg"
-                    src={product.imageUrl}
-                  />
-                </div>
-                <div className="product-contents">
-                  <span className="product-name">{product.name}</span>
-                  <span className="product-price">{product.price}원</span>
-                  <div className="product-seller">
+              <Link className="product-link" to={`/products/${i}`} key={i}>
+                <div className="product-card">
+                  <div>
                     <img
-                      className="product-avatar"
-                      src="images/icons/avatar.png"
+                      className="product-img"
+                      //src="/images/products/keyboard1.jpg"
+                      src={product.imageUrl}
                     />
-                    <span>{product.seller}</span>
+                  </div>
+                  <div className="product-contents">
+                    <span className="product-name">{product.name}</span>
+                    <span className="product-price">{product.price}원</span>
+                    <div className="product-seller">
+                      <img
+                        className="product-avatar"
+                        src="images/icons/avatar.png"
+                      />
+                      <span>{product.seller}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
